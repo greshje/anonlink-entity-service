@@ -5,7 +5,7 @@ cd ..
 
 export APPVERSION=$(cat backend/entityservice/VERSION)
 
-#docker build -t data61/anonlink-base:latest base
+docker build -t data61/anonlink-base:latest base
 
 docker build -t data61/anonlink-test:latest e2etests
 
