@@ -3,8 +3,8 @@ from pathlib import Path
 
 import structlog
 
-from entityservice.utils import load_yaml_config
-from entityservice.settings import Config as config
+from backend.entityservice.utils import load_yaml_config
+from backend.entityservice.settings import Config as config
 
 
 def setup_logging(default_path='default_logging.yaml'):

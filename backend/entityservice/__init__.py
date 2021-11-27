@@ -5,7 +5,17 @@ from flask import g, request
 import structlog
 from tenacity import RetryError
 
-from entityservice.logger_setup import setup_logging
+from backend.entityservice.logger_setup import setup_logging
+
+import backend.entityservice.views
+from backend.entityservice.tracing import initialize_tracer
+import opentracing
+from flask_opentracing import FlaskTracing
+from backend.entityservice import database as db
+from backend.entityservice.serialization import generate_scores
+from backend.entityservice.object_store import connect_to_object_store
+from backend.entityservice.settings import Config as Config
+from backend.entityservice.utils import fmt_bytes, iterable_to_stream
 
 # Logging setup
 setup_logging()
@@ -15,25 +25,15 @@ setup_logging()
 con_app = connexion.FlaskApp(__name__, specification_dir='api_def', debug=True)
 app = con_app.app
 
-import entityservice.views
-from entityservice.tracing import initialize_tracer
-import opentracing
-from flask_opentracing import FlaskTracing
-from entityservice import database as db
-from entityservice.serialization import generate_scores
-from entityservice.object_store import connect_to_object_store
-from entityservice.settings import Config as config
-from entityservice.utils import fmt_bytes, iterable_to_stream
-
 con_app.add_api(pathlib.Path("openapi.yaml"),
                 base_path='/',
                 options={'swagger_ui': False},
-                strict_validation=config.CONNEXION_STRICT_VALIDATION,
-                validate_responses=config.CONNEXION_RESPONSE_VALIDATION)
+                strict_validation=Config.CONNEXION_STRICT_VALIDATION,
+                validate_responses=Config.CONNEXION_RESPONSE_VALIDATION)
 
 
 # Config could be Config, DevelopmentConfig or ProductionConfig
-app.config.from_object(config)
+app.config.from_object(Config)
 
 logger = structlog.wrap_logger(app.logger)
 # Tracer setup (currently just trace all requests)
@@ -42,8 +42,8 @@ flask_tracer = FlaskTracing(initialize_tracer, True, app)
 
 @app.before_first_request
 def before_first_request():
-    db_min_connections = config.FLASK_DB_MIN_CONNECTIONS
-    db_max_connections = config.FLASK_DB_MAX_CONNECTIONS
+    db_min_connections = Config.FLASK_DB_MIN_CONNECTIONS
+    db_max_connections = Config.FLASK_DB_MAX_CONNECTIONS
     try:
         db.init_db_pool(db_min_connections, db_max_connections)
     except RetryError:
@@ -54,9 +54,9 @@ def before_first_request():
 @app.before_request
 def before_request():
     g.log = logger.new(request=str(uuid.uuid4())[:8])
-    if config.LOG_HTTP_HEADER_FIELDS is not None:
+    if Config.LOG_HTTP_HEADER_FIELDS is not None:
         headers = {}
-        for header in config.LOG_HTTP_HEADER_FIELDS.split(','):
+        for header in Config.LOG_HTTP_HEADER_FIELDS.split(','):
             header = header.strip()
             if header in request.headers:
                 headers[header] = request.headers[header]
