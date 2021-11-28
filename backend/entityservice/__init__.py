@@ -5,17 +5,17 @@ from flask import g, request
 import structlog
 from tenacity import RetryError
 
-from backend.entityservice.logger_setup import setup_logging
+from entityservice.logger_setup import setup_logging
 
-import backend.entityservice.views
-from backend.entityservice.tracing import initialize_tracer
+import entityservice.views
+from entityservice.tracing import initialize_tracer
 import opentracing
 from flask_opentracing import FlaskTracing
-from backend.entityservice import database as db
-from backend.entityservice.serialization import generate_scores
-from backend.entityservice.object_store import connect_to_object_store
-from backend.entityservice.settings import Config as Config
-from backend.entityservice.utils import fmt_bytes, iterable_to_stream
+from entityservice import database as db
+from entityservice.serialization import generate_scores
+from entityservice.object_store import connect_to_object_store
+from entityservice.settings import Config as Config
+from entityservice.utils import fmt_bytes, iterable_to_stream
 
 # Logging setup
 setup_logging()
