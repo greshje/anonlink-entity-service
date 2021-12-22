@@ -28,7 +28,8 @@ def load_yaml_config(filename):
     :return: Python representation of yaml file's contents (usually Dict), or None if empty.
     """
     try:
-        # filename = "./verbose_logging.yaml"
+        # uncommented the following line to enable windows pycharm debugging
+        filename = "./verbose_logging.yaml"
         with open(filename, 'rt') as f:
             return yaml.safe_load(f)
     except UnicodeDecodeError as e:
