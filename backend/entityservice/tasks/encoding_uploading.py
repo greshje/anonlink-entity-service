@@ -1,5 +1,6 @@
 import json
 import ijson
+import util.logging.lrp_logger as lrp
 from requests.structures import CaseInsensitiveDict
 
 from entityservice.database import *
@@ -186,6 +187,7 @@ def handle_raw_upload(project_id, dp_id, receipt_token, parent_span=None):
     msg += "--\n"
     msg += "-- * * * \n\n\n"
     logger.info(msg)
+    lrp.log("Starting run")
 
     # do_handle_raw_upload
     log.info("Handling user provided base64 encodings")
