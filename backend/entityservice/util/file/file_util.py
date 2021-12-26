@@ -83,3 +83,9 @@ def write_string_to_file(string, file_path):
         text_file.write(string)
 
 
+def append_string_to_file(string, file_path):
+    with open(file_path, "a") as text_file:
+        text_file.write(string)
+
+
+
