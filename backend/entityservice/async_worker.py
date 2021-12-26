@@ -33,6 +33,11 @@ logger = structlog.wrap_logger(logging.getLogger('entityservice.tasks'))
 
 @signals.worker_process_init.connect()
 def init_worker(**kwargs):
+    logger.info("")
+    logger.info("-------------")
+    logger.info("! ! ! INITIALIZING WORKER ! ! ! ")
+    logger.info("-------------")
+    logger.info("")
     db_min_connections = Config.CELERY_DB_MIN_CONNECTIONS
     db_max_connections = Config.CELERY_DB_MAX_CONNECTIONS
     init_db_pool(db_min_connections, db_max_connections)

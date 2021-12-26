@@ -156,6 +156,19 @@ def clks_uploaded_to_project(project_id, check_data_ready=False):
             log.info("Parties where data is uploaded: {}".format(parties_contributed))
         number_parties = get_project_column(conn, project_id, 'parties')
     log.info("{}/{} parties have contributed clks".format(parties_contributed, number_parties))
+    # log status when were done
+    if parties_contributed == number_parties:
+        msg = ""
+        msg += "\n\n\n"
+        msg += "-- * * *\n"
+        msg += "--\n"
+        msg += "-- DONE WITH CLKS \n"
+        msg += "--\n"
+        msg += "-- * * * \n\n\n"
+        logger.info(msg)
+    else:
+        logger.info("* * * NOT DONE WITH CLKS YET * * *")
+    # done
     return parties_contributed == number_parties
 
 

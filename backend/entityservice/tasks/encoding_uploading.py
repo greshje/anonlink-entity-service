@@ -175,7 +175,19 @@ def handle_raw_upload(project_id, dp_id, receipt_token, parent_span=None):
     User has uploaded base64 encodings as JSON, this task needs to copy the data into
     our internal binary format.
     """
+    # init logger
     log = logger.bind(pid=project_id, dp_id=dp_id)
+    # report start of run
+    msg = ""
+    msg += "\n\n\n"
+    msg += "-- * * *\n"
+    msg += "--\n"
+    msg += "-- STARTING RUN \n"
+    msg += "--\n"
+    msg += "-- * * * \n\n\n"
+    logger.info(msg)
+
+    # do_handle_raw_upload
     log.info("Handling user provided base64 encodings")
     new_child_span = lambda name: handle_raw_upload.tracer.start_active_span(name, child_of=handle_raw_upload.span)
     with DBConn() as db:
