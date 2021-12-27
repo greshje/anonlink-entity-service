@@ -1,0 +1,688 @@
+Attaching to anonlink_minio_1, anonlink_jaeger_1, anonlink_db_1, anonlink_redis_1, anonlink_objectstore_init_1, anonlink_worker_1_1, anonlink_worker_4_1, anonlink_db_init_1, anonlink_worker_10_1, anonlink_worker_5_1, anonlink_worker_7_1, anonlink_worker_3_1, anonlink_worker_8_1, anonlink_worker_2_1, anonlink_worker_6_1, anonlink_backend_1, anonlink_worker_9_1, anonlink_nginx_1
+[36mbackend_1           |[0m [2021-12-27 23:15:28 +0000] [1] [INFO] Starting gunicorn 20.1.0
+[36mbackend_1           |[0m [2021-12-27 23:15:28 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)
+[36mbackend_1           |[0m [2021-12-27 23:15:28 +0000] [1] [INFO] Using worker: sync
+[36mbackend_1           |[0m [2021-12-27 23:15:28 +0000] [8] [INFO] Booting worker with pid: 8
+[36mbackend_1           |[0m [2021-12-27 23:15:28 +0000] [9] [INFO] Booting worker with pid: 9
+[36mbackend_1           |[0m [2021-12-27 23:15:28 +0000] [10] [INFO] Booting worker with pid: 10
+[36mbackend_1           |[0m [2021-12-27 23:15:28 +0000] [11] [INFO] Booting worker with pid: 11
+[33mdb_1                |[0m The files belonging to this database system will be owned by user "postgres".
+[33mdb_1                |[0m This user must also own the server process.
+[33mdb_1                |[0m 
+[33mdb_1                |[0m The database cluster will be initialized with locale "en_US.utf8".
+[33mdb_1                |[0m The default database encoding has accordingly been set to "UTF8".
+[33mdb_1                |[0m The default text search configuration will be set to "english".
+[33mdb_1                |[0m 
+[33mdb_1                |[0m Data page checksums are disabled.
+[33mdb_1                |[0m 
+[33mdb_1                |[0m fixing permissions on existing directory /var/lib/postgresql/data ... ok
+[33mdb_1                |[0m creating subdirectories ... ok
+[33mdb_1                |[0m selecting default max_connections ... 100
+[33mdb_1                |[0m selecting default shared_buffers ... 128MB
+[33mdb_1                |[0m selecting default timezone ... Etc/UTC
+[33mdb_1                |[0m selecting dynamic shared memory implementation ... posix
+[33mdb_1                |[0m creating configuration files ... ok
+[33mdb_1                |[0m running bootstrap script ... ok
+[33mdb_1                |[0m performing post-bootstrap initialization ... ok
+[33mdb_1                |[0m syncing data to disk ... ok
+[33mdb_1                |[0m 
+[33mdb_1                |[0m Success. You can now start the database server using:
+[33mdb_1                |[0m 
+[33mdb_1                |[0m     pg_ctl -D /var/lib/postgresql/data -l logfile start
+[33mdb_1                |[0m 
+[33mdb_1                |[0m 
+[33mdb_1                |[0m WARNING: enabling "trust" authentication for local connections
+[33mdb_1                |[0m You can change this by editing pg_hba.conf or using the option -A, or
+[33mdb_1                |[0m --auth-local and --auth-host, the next time you run initdb.
+[33mdb_1                |[0m waiting for server to start....2021-12-27 23:15:24.424 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+[32mdb_init_1           |[0m 2021/12/27 23:15:25 Waiting for: tcp://db:5432
+[32mdb_init_1           |[0m 2021/12/27 23:15:25 Connected to tcp://db:5432
+[33mdb_1                |[0m 2021-12-27 23:15:24.439 UTC [50] LOG:  database system was shut down at 2021-12-27 23:15:24 UTC
+[33mdb_1                |[0m 2021-12-27 23:15:24.445 UTC [49] LOG:  database system is ready to accept connections
+[33mdb_1                |[0m  done
+[33mdb_1                |[0m server started
+[35mjaeger_1            |[0m 2021/12/27 23:15:23 maxprocs: Leaving GOMAXPROCS=16: CPU quota undefined
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.4574006,"caller":"flags/service.go:117","msg":"Mounting metrics handler on admin server","route":"/metrics"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.4575326,"caller":"flags/service.go:123","msg":"Mounting expvar handler on admin server","route":"/debug/vars"}
+[33mdb_1                |[0m 
+[33mdb_1                |[0m /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+[33mdb_1                |[0m 
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.4577055,"caller":"flags/admin.go:104","msg":"Mounting health check on admin server","route":"/"}
+[32mdb_init_1           |[0m Context impl PostgresqlImpl.
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.4577687,"caller":"flags/admin.go:115","msg":"Starting admin HTTP server","http-addr":":14269"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.457803,"caller":"flags/admin.go:96","msg":"Admin server started","http.host-port":"[::]:14269","health-status":"unavailable"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6439965,"caller":"memory/factory.go:63","msg":"Memory storage initialized","configuration":{"MaxTraces":0}}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6443782,"caller":"static/strategy_store.go:138","msg":"Loading sampling strategies","filename":"/etc/jaeger/sampling_strategies.json"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6513772,"caller":"server/grpc.go:90","msg":"Starting jaeger-collector gRPC server","grpc.host-port":":14250"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6514359,"caller":"server/http.go:48","msg":"Starting jaeger-collector HTTP server","http host-port":":14268"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6517076,"caller":"server/zipkin.go:49","msg":"Not listening for Zipkin HTTP traffic, port not configured"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6517422,"caller":"grpc/builder.go:71","msg":"Agent requested insecure grpc connection to collector(s)"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6519,"caller":"channelz/logging.go:50","msg":"[core]original dial target is: \":14250\"","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6520457,"caller":"channelz/logging.go:50","msg":"[core]dial target \":14250\" parse failed: parse \":14250\": missing protocol scheme","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6520512,"caller":"channelz/logging.go:50","msg":"[core]fallback to scheme \"passthrough\"","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.652068,"caller":"channelz/logging.go:50","msg":"[core]parsed dial target is: {Scheme:passthrough Authority: Endpoint::14250 URL:{Scheme:passthrough Opaque: User: Host: Path:/:14250 RawPath: ForceQuery:false RawQuery: Fragment: RawFragment:}}","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.652084,"caller":"channelz/logging.go:50","msg":"[core]Channel authority set to \"localhost:14250\"","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6521006,"caller":"channelz/logging.go:50","msg":"[core]ccResolverWrapper: sending update to cc: {[{:14250  <nil> <nil> 0 <nil>}] <nil> <nil>}","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6521492,"caller":"channelz/logging.go:50","msg":"[core]ClientConn switching balancer to \"round_robin\"","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6521668,"caller":"channelz/logging.go:50","msg":"[core]Channel switches to new LB policy \"round_robin\"","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6522171,"caller":"grpclog/component.go:55","msg":"[balancer]base.baseBalancer: got new ClientConn state: {{[{:14250  <nil> <nil> 0 <nil>}] <nil> <nil>} <nil>}","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.652373,"caller":"channelz/logging.go:50","msg":"[core]Subchannel Connectivity change to CONNECTING","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6523852,"caller":"grpc/builder.go:110","msg":"Checking connection to collector"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.652412,"caller":"grpc/builder.go:121","msg":"Agent collector connection state change","dialTarget":":14250","status":"IDLE"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6525874,"caller":"grpclog/component.go:71","msg":"[balancer]base.baseBalancer: handle SubConn state change: 0xc00035c9f0, CONNECTING","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.65262,"caller":"channelz/logging.go:50","msg":"[core]Channel Connectivity change to CONNECTING","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6526275,"caller":"grpc/builder.go:121","msg":"Agent collector connection state change","dialTarget":":14250","status":"CONNECTING"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6524336,"caller":"channelz/logging.go:50","msg":"[core]Subchannel picks a new address \":14250\" to connect","system":"grpc","grpc_log":true}
+[33mdb_1                |[0m waiting for server to shut down...2021-12-27 23:15:24.548 UTC [49] LOG:  received fast shutdown request
+[33mdb_1                |[0m .2021-12-27 23:15:24.550 UTC [49] LOG:  aborting any active transactions
+[33mdb_1                |[0m 2021-12-27 23:15:24.551 UTC [49] LOG:  background worker "logical replication launcher" (PID 56) exited with exit code 1
+[34mminio_1             |[0m 
+[34mminio_1             |[0m  You are running an older version of MinIO released 10 months ago 
+[34mminio_1             |[0m  Update: Run `mc admin update` 
+[34mminio_1             |[0m 
+[34mminio_1             |[0m 
+[33mdb_1                |[0m 2021-12-27 23:15:24.551 UTC [51] LOG:  shutting down
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6528358,"caller":"./main.go:243","msg":"Starting agent"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6529334,"caller":"querysvc/query_service.go:137","msg":"Archive storage not created","reason":"archive storage not supported"}
+[33mdb_1                |[0m 2021-12-27 23:15:24.562 UTC [49] LOG:  database system is shut down
+[34mminio_1             |[0m Attempting encryption of all config, IAM users and policies on MinIO backend
+[32mdb_init_1           |[0m Will assume transactional DDL.
+[33mdb_1                |[0m  done
+[33mdb_1                |[0m server stopped
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6529844,"caller":"app/flags.go:124","msg":"Archive storage not initialized"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6530166,"caller":"app/agent.go:69","msg":"Starting jaeger-agent HTTP server","http-port":5778}
+[34mminio_1             |[0m Endpoint: http://172.26.0.2:9000  http://127.0.0.1:9000 
+[34mminio_1             |[0m 
+[34mminio_1             |[0m Browser Access:
+[34mminio_1             |[0m    http://172.26.0.2:9000  http://127.0.0.1:9000
+[34mminio_1             |[0m 
+[34mminio_1             |[0m Object API (Amazon S3 compatible):
+[34mminio_1             |[0m    Go:         https://docs.min.io/docs/golang-client-quickstart-guide
+[34mminio_1             |[0m    Java:       https://docs.min.io/docs/java-client-quickstart-guide
+[34mminio_1             |[0m    Python:     https://docs.min.io/docs/python-client-quickstart-guide
+[34mminio_1             |[0m    JavaScript: https://docs.min.io/docs/javascript-client-quickstart-guide
+[34mminio_1             |[0m    .NET:       https://docs.min.io/docs/dotnet-client-quickstart-guide
+[33mdb_1                |[0m 
+[33mdb_1                |[0m PostgreSQL init process complete; ready for start up.
+[33mdb_1                |[0m 
+[33;1mobjectstore_init_1  |[0m mc version RELEASE.2021-02-14T04-28-06Z
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6532297,"caller":"channelz/logging.go:50","msg":"[core]Subchannel Connectivity change to READY","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6532657,"caller":"grpclog/component.go:71","msg":"[balancer]base.baseBalancer: handle SubConn state change: 0xc00035c9f0, READY","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6532788,"caller":"channelz/logging.go:50","msg":"[core]original dial target is: \":16685\"","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.653293,"caller":"channelz/logging.go:50","msg":"[core]dial target \":16685\" parse failed: parse \":16685\": missing protocol scheme","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6533124,"caller":"channelz/logging.go:50","msg":"[core]fallback to scheme \"passthrough\"","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6533256,"caller":"channelz/logging.go:50","msg":"[core]parsed dial target is: {Scheme:passthrough Authority: Endpoint::16685 URL:{Scheme:passthrough Opaque: User: Host: Path:/:16685 RawPath: ForceQuery:false RawQuery: Fragment: RawFragment:}}","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.653347,"caller":"channelz/logging.go:50","msg":"[core]Channel authority set to \"localhost:16685\"","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6533465,"caller":"grpclog/component.go:71","msg":"[roundrobin]roundrobinPicker: Build called with info: {map[0xc00035c9f0:{{:14250  <nil> <nil> 0 <nil>}}]}","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6533556,"caller":"channelz/logging.go:50","msg":"[core]ccResolverWrapper: sending update to cc: {[{:16685  <nil> <nil> 0 <nil>}] <nil> <nil>}","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6533837,"caller":"channelz/logging.go:50","msg":"[core]ClientConn switching balancer to \"pick_first\"","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6533885,"caller":"channelz/logging.go:50","msg":"[core]Channel switches to new LB policy \"pick_first\"","system":"grpc","grpc_log":true}
+[32mdb_init_1           |[0m Running upgrade  -> 292d2f2d3939, Add initial tables
+[33;1mobjectstore_init_1  |[0m == Initialising Object Store ==
+[33;1mobjectstore_init_1  |[0m Bucket created successfully `minio/uploads`.
+[33mdb_1                |[0m 2021-12-27 23:15:24.733 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+[33mdb_1                |[0m 2021-12-27 23:15:24.733 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+[33mdb_1                |[0m 2021-12-27 23:15:24.737 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+[33mdb_1                |[0m 2021-12-27 23:15:24.815 UTC [68] LOG:  database system was shut down at 2021-12-27 23:15:24 UTC
+[33mdb_1                |[0m 2021-12-27 23:15:24.820 UTC [1] LOG:  database system is ready to accept connections
+[33mdb_1                |[0m 2021-12-27 23:15:27.240 UTC [75] LOG:  incomplete startup packet
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6533558,"caller":"channelz/logging.go:50","msg":"[core]Channel Connectivity change to READY","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.653486,"caller":"grpc/builder.go:121","msg":"Agent collector connection state change","dialTarget":":14250","status":"READY"}
+[33;1mobjectstore_init_1  |[0m Added user `EXAMPLE_UPLOAD_ACCESS_KEY` successfully.
+[33;1mobjectstore_init_1  |[0m Policy writeonly is set on user `EXAMPLE_UPLOAD_ACCESS_KEY`
+[32;1mredis_1             |[0m 1:C 27 Dec 2021 23:15:23.687 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+[32;1mredis_1             |[0m 1:C 27 Dec 2021 23:15:23.687 # Redis version=5.0.14, bits=64, commit=00000000, modified=0, pid=1, just started
+[32;1mredis_1             |[0m 1:C 27 Dec 2021 23:15:23.687 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+[32;1mredis_1             |[0m 1:M 27 Dec 2021 23:15:23.688 * Running mode=standalone, port=6379.
+[32;1mredis_1             |[0m 1:M 27 Dec 2021 23:15:23.688 # Server initialized
+[32;1mredis_1             |[0m 1:M 27 Dec 2021 23:15:23.688 # WARNING overcommit_memory is set to 0! Background save may fail under low memory condition. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+[32;1mredis_1             |[0m 1:M 27 Dec 2021 23:15:23.688 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command 'echo never > /sys/kernel/mm/transparent_hugepage/enabled' as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.
+[32;1mredis_1             |[0m 1:M 27 Dec 2021 23:15:23.688 * Ready to accept connections
+[32mdb_init_1           |[0m Running upgrade 292d2f2d3939 -> e321799791b7, add err_msg to runs
+[32mdb_init_1           |[0m Running upgrade e321799791b7 -> 9a5d78339327, added_dp_to_encoding
+[32mdb_init_1           |[0m 2021/12/27 23:15:27 Command finished successfully.
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6535003,"caller":"channelz/logging.go:50","msg":"[core]Subchannel Connectivity change to CONNECTING","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.653533,"caller":"channelz/logging.go:50","msg":"[core]Subchannel picks a new address \":16685\" to connect","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6537004,"caller":"grpclog/component.go:71","msg":"[core]pickfirstBalancer: UpdateSubConnState: 0xc0004fd830, {CONNECTING <nil>}","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.653759,"caller":"channelz/logging.go:50","msg":"[core]Channel Connectivity change to CONNECTING","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"warn","ts":1640646923.6537118,"caller":"channelz/logging.go:75","msg":"[core]grpc: addrConn.createTransport failed to connect to {:16685 localhost:16685 <nil> <nil> 0 <nil>}. Err: connection error: desc = \"transport: Error while dialing dial tcp :16685: connect: connection refused\"","system":"grpc","grpc_log":true}
+[34;1mworker_1_1          |[0m  
+[34;1mworker_1_1          |[0m  -------------- celery@c2b07bdaaf18 v5.1.2 (sun-harmonics)
+[34;1mworker_1_1          |[0m --- ***** ----- 
+[34;1mworker_1_1          |[0m -- ******* ---- Linux-5.10.60.1-microsoft-standard-WSL2-x86_64-with 2021-12-27 23:15:26
+[34;1mworker_1_1          |[0m - *** --- * --- 
+[34;1mworker_1_1          |[0m - ** ---------- [config]
+[34;1mworker_1_1          |[0m - ** ---------- .> app:         tasks:0x7fc3e5ecbbe0
+[34;1mworker_1_1          |[0m - ** ---------- .> transport:   redis://redis:6379/0
+[34;1mworker_1_1          |[0m - ** ---------- .> results:     redis://redis:6379/0
+[34;1mworker_1_1          |[0m - *** --- * --- .> concurrency: 2 (prefork)
+[34;1mworker_1_1          |[0m -- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+[34;1mworker_1_1          |[0m --- ***** ----- 
+[34;1mworker_1_1          |[0m  -------------- [queues]
+[34;1mworker_1_1          |[0m                 .> celery           exchange=celery(direct) key=celery
+[34;1mworker_1_1          |[0m                 .> compute          exchange=compute(direct) key=compute
+[34;1mworker_1_1          |[0m                 .> highmemory       exchange=highmemory(direct) key=highmemory
+[34;1mworker_1_1          |[0m 
+[34;1mworker_1_1          |[0m [tasks]
+[34;1mworker_1_1          |[0m   . entityservice.tasks.base_task.celery_bug_fix
+[34;1mworker_1_1          |[0m   . entityservice.tasks.base_task.run_failed_handler
+[34;1mworker_1_1          |[0m   . entityservice.tasks.comparing.aggregate_comparisons
+[34;1mworker_1_1          |[0m   . entityservice.tasks.comparing.compute_filter_similarity
+[34;1mworker_1_1          |[0m   . entityservice.tasks.comparing.create_comparison_jobs
+[34;1mworker_1_1          |[0m   . entityservice.tasks.encoding_uploading.handle_raw_upload
+[34;1mworker_1_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data
+[34;1mworker_1_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data_encodings_only
+[34;1mworker_1_1          |[0m   . entityservice.tasks.mark_run_complete.mark_run_complete
+[34;1mworker_1_1          |[0m   . entityservice.tasks.permutation.permute_mapping_data
+[34;1mworker_1_1          |[0m   . entityservice.tasks.permutation.save_and_permute
+[34;1mworker_1_1          |[0m   . entityservice.tasks.pre_run_check.check_for_executable_runs
+[34;1mworker_1_1          |[0m   . entityservice.tasks.project_cleanup.delete_minio_objects
+[34;1mworker_1_1          |[0m   . entityservice.tasks.project_cleanup.remove_project
+[34;1mworker_1_1          |[0m   . entityservice.tasks.run.prerun_check
+[34;1mworker_1_1          |[0m   . entityservice.tasks.solver.solver_task
+[34;1mworker_1_1          |[0m   . entityservice.tasks.stats.calculate_comparison_rate
+[34;1mworker_1_1          |[0m 
+[34;1mworker_1_1          |[0m [2021-12-27 23:15:26,613: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[34;1mworker_1_1          |[0m [2021-12-27 23:15:26,613: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[34;1mworker_1_1          |[0m [2021-12-27 23:15:26,614: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[34;1mworker_1_1          |[0m [2021-12-27 23:15:26,614: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[34;1mworker_1_1          |[0m [2021-12-27 23:15:26,614: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[34;1mworker_1_1          |[0m [2021-12-27 23:15:26,614: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[34;1mworker_1_1          |[0m [2021-12-27 23:15:26,623: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[34;1mworker_1_1          |[0m [2021-12-27 23:15:26,623: DEBUG/ForkPoolWorker-1] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[34;1mworker_1_1          |[0m [2021-12-27 23:15:26,701: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[34;1mworker_1_1          |[0m [2021-12-27 23:15:26,702: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6537971,"caller":"channelz/logging.go:50","msg":"[core]Subchannel Connectivity change to TRANSIENT_FAILURE","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6538146,"caller":"app/static_handler.go:182","msg":"UI config path not provided, config file will not be watched"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6538484,"caller":"grpclog/component.go:71","msg":"[core]pickfirstBalancer: UpdateSubConnState: 0xc0004fd830, {TRANSIENT_FAILURE connection error: desc = \"transport: Error while dialing dial tcp :16685: connect: connection refused\"}","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6538563,"caller":"channelz/logging.go:50","msg":"[core]Channel Connectivity change to TRANSIENT_FAILURE","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6539187,"caller":"app/server.go:198","msg":"Query server started"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6539454,"caller":"healthcheck/handler.go:129","msg":"Health Check state change","status":"ready"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.6540265,"caller":"app/server.go:277","msg":"Starting GRPC server","port":16685,"addr":":16685"}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646923.654015,"caller":"app/server.go:258","msg":"Starting HTTP server","port":16686,"addr":":16686"}
+[35;1mworker_10_1         |[0m  
+[35;1mworker_10_1         |[0m  -------------- celery@26add51e2ae8 v5.1.2 (sun-harmonics)
+[35;1mworker_10_1         |[0m --- ***** ----- 
+[35;1mworker_10_1         |[0m -- ******* ---- Linux-5.10.60.1-microsoft-standard-WSL2-x86_64-with 2021-12-27 23:15:27
+[35;1mworker_10_1         |[0m - *** --- * --- 
+[35;1mworker_10_1         |[0m - ** ---------- [config]
+[35;1mworker_10_1         |[0m - ** ---------- .> app:         tasks:0x7fa176b23c10
+[35;1mworker_10_1         |[0m - ** ---------- .> transport:   redis://redis:6379/0
+[35;1mworker_10_1         |[0m - ** ---------- .> results:     redis://redis:6379/0
+[35;1mworker_10_1         |[0m - *** --- * --- .> concurrency: 2 (prefork)
+[35;1mworker_10_1         |[0m -- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+[35;1mworker_10_1         |[0m --- ***** ----- 
+[35;1mworker_10_1         |[0m  -------------- [queues]
+[35;1mworker_10_1         |[0m                 .> celery           exchange=celery(direct) key=celery
+[35;1mworker_10_1         |[0m                 .> compute          exchange=compute(direct) key=compute
+[35;1mworker_10_1         |[0m                 .> highmemory       exchange=highmemory(direct) key=highmemory
+[35;1mworker_10_1         |[0m 
+[35;1mworker_10_1         |[0m [tasks]
+[35;1mworker_10_1         |[0m   . entityservice.tasks.base_task.celery_bug_fix
+[35;1mworker_10_1         |[0m   . entityservice.tasks.base_task.run_failed_handler
+[35;1mworker_10_1         |[0m   . entityservice.tasks.comparing.aggregate_comparisons
+[35;1mworker_10_1         |[0m   . entityservice.tasks.comparing.compute_filter_similarity
+[35;1mworker_10_1         |[0m   . entityservice.tasks.comparing.create_comparison_jobs
+[35;1mworker_10_1         |[0m   . entityservice.tasks.encoding_uploading.handle_raw_upload
+[35;1mworker_10_1         |[0m   . entityservice.tasks.encoding_uploading.pull_external_data
+[35;1mworker_10_1         |[0m   . entityservice.tasks.encoding_uploading.pull_external_data_encodings_only
+[35;1mworker_10_1         |[0m   . entityservice.tasks.mark_run_complete.mark_run_complete
+[35;1mworker_10_1         |[0m   . entityservice.tasks.permutation.permute_mapping_data
+[35;1mworker_10_1         |[0m   . entityservice.tasks.permutation.save_and_permute
+[35;1mworker_10_1         |[0m   . entityservice.tasks.pre_run_check.check_for_executable_runs
+[35;1mworker_10_1         |[0m   . entityservice.tasks.project_cleanup.delete_minio_objects
+[35;1mworker_10_1         |[0m   . entityservice.tasks.project_cleanup.remove_project
+[35;1mworker_10_1         |[0m   . entityservice.tasks.run.prerun_check
+[35;1mworker_10_1         |[0m   . entityservice.tasks.solver.solver_task
+[35;1mworker_10_1         |[0m   . entityservice.tasks.stats.calculate_comparison_rate
+[35;1mworker_10_1         |[0m 
+[34;1mworker_1_1          |[0m [2021-12-27 23:15:26,702: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[34;1mworker_1_1          |[0m [2021-12-27 23:15:26,702: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[34;1mworker_1_1          |[0m [2021-12-27 23:15:26,703: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[34;1mworker_1_1          |[0m [2021-12-27 23:15:26,703: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[35mjaeger_1            |[0m {"level":"info","ts":1640646924.6540835,"caller":"channelz/logging.go:50","msg":"[core]Subchannel Connectivity change to IDLE","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646924.6541936,"caller":"grpclog/component.go:71","msg":"[core]pickfirstBalancer: UpdateSubConnState: 0xc0004fd830, {IDLE connection error: desc = \"transport: Error while dialing dial tcp :16685: connect: connection refused\"}","system":"grpc","grpc_log":true}
+[35mjaeger_1            |[0m {"level":"info","ts":1640646924.654207,"caller":"channelz/logging.go:50","msg":"[core]Channel Connectivity change to IDLE","system":"grpc","grpc_log":true}
+[34;1mworker_1_1          |[0m [2021-12-27 23:15:26,707: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[34;1mworker_1_1          |[0m [2021-12-27 23:15:26,707: DEBUG/ForkPoolWorker-2] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[35;1mworker_10_1         |[0m [2021-12-27 23:15:27,583: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[35;1mworker_10_1         |[0m [2021-12-27 23:15:27,583: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[35;1mworker_10_1         |[0m [2021-12-27 23:15:27,583: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[33;1mobjectstore_init_1  |[0m == Object Store Root Upload User Created ==
+[35;1mworker_10_1         |[0m [2021-12-27 23:15:27,584: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[35;1mworker_10_1         |[0m [2021-12-27 23:15:27,584: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[33;1mobjectstore_init_1  |[0m Added user `EXAMPLE_DOWNLOAD_ACCESS_KEY` successfully.
+[35;1mworker_10_1         |[0m [2021-12-27 23:15:27,584: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[33;1mobjectstore_init_1  |[0m Policy readonly is set on user `EXAMPLE_DOWNLOAD_ACCESS_KEY`
+[33;1mobjectstore_init_1  |[0m == Object Store Root Download User Created ==
+[33;1mobjectstore_init_1  |[0m == Object Store Initialised ==
+[35;1mworker_10_1         |[0m [2021-12-27 23:15:27,587: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[35;1mworker_10_1         |[0m [2021-12-27 23:15:27,588: DEBUG/ForkPoolWorker-1] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[35;1mworker_10_1         |[0m [2021-12-27 23:15:27,635: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[35;1mworker_10_1         |[0m [2021-12-27 23:15:27,636: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[35;1mworker_10_1         |[0m [2021-12-27 23:15:27,636: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[33mworker_3_1          |[0m  
+[33mworker_3_1          |[0m  -------------- celery@d262865ef142 v5.1.2 (sun-harmonics)
+[33mworker_3_1          |[0m --- ***** ----- 
+[33mworker_3_1          |[0m -- ******* ---- Linux-5.10.60.1-microsoft-standard-WSL2-x86_64-with 2021-12-27 23:15:28
+[33mworker_3_1          |[0m - *** --- * --- 
+[33mworker_3_1          |[0m - ** ---------- [config]
+[33mworker_3_1          |[0m - ** ---------- .> app:         tasks:0x7f899f55abe0
+[33mworker_3_1          |[0m - ** ---------- .> transport:   redis://redis:6379/0
+[33mworker_3_1          |[0m - ** ---------- .> results:     redis://redis:6379/0
+[33mworker_3_1          |[0m - *** --- * --- .> concurrency: 2 (prefork)
+[33mworker_3_1          |[0m -- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+[33mworker_3_1          |[0m --- ***** ----- 
+[33mworker_3_1          |[0m  -------------- [queues]
+[33mworker_3_1          |[0m                 .> celery           exchange=celery(direct) key=celery
+[33mworker_3_1          |[0m                 .> compute          exchange=compute(direct) key=compute
+[33mworker_3_1          |[0m                 .> highmemory       exchange=highmemory(direct) key=highmemory
+[33mworker_3_1          |[0m 
+[33mworker_3_1          |[0m [tasks]
+[33mworker_3_1          |[0m   . entityservice.tasks.base_task.celery_bug_fix
+[33mworker_3_1          |[0m   . entityservice.tasks.base_task.run_failed_handler
+[33mworker_3_1          |[0m   . entityservice.tasks.comparing.aggregate_comparisons
+[33mworker_3_1          |[0m   . entityservice.tasks.comparing.compute_filter_similarity
+[33mworker_3_1          |[0m   . entityservice.tasks.comparing.create_comparison_jobs
+[33mworker_3_1          |[0m   . entityservice.tasks.encoding_uploading.handle_raw_upload
+[33mworker_3_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data
+[33mworker_3_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data_encodings_only
+[33mworker_3_1          |[0m   . entityservice.tasks.mark_run_complete.mark_run_complete
+[33mworker_3_1          |[0m   . entityservice.tasks.permutation.permute_mapping_data
+[33mworker_3_1          |[0m   . entityservice.tasks.permutation.save_and_permute
+[33mworker_3_1          |[0m   . entityservice.tasks.pre_run_check.check_for_executable_runs
+[33mworker_3_1          |[0m   . entityservice.tasks.project_cleanup.delete_minio_objects
+[33mworker_3_1          |[0m   . entityservice.tasks.project_cleanup.remove_project
+[33mworker_3_1          |[0m   . entityservice.tasks.run.prerun_check
+[33mworker_3_1          |[0m   . entityservice.tasks.solver.solver_task
+[33mworker_3_1          |[0m   . entityservice.tasks.stats.calculate_comparison_rate
+[33mworker_3_1          |[0m 
+[33mworker_3_1          |[0m [2021-12-27 23:15:28,106: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[33mworker_3_1          |[0m [2021-12-27 23:15:28,106: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[33mworker_3_1          |[0m [2021-12-27 23:15:28,106: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[35;1mworker_10_1         |[0m [2021-12-27 23:15:27,636: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[32manonlink_db_init_1 exited with code 0
+[0m[32mworker_4_1          |[0m  
+[32mworker_4_1          |[0m  -------------- celery@4043cd03c8b7 v5.1.2 (sun-harmonics)
+[32mworker_4_1          |[0m --- ***** ----- 
+[32mworker_4_1          |[0m -- ******* ---- Linux-5.10.60.1-microsoft-standard-WSL2-x86_64-with 2021-12-27 23:15:26
+[32mworker_4_1          |[0m - *** --- * --- 
+[32mworker_4_1          |[0m - ** ---------- [config]
+[32mworker_4_1          |[0m - ** ---------- .> app:         tasks:0x7f9fcf639c10
+[32mworker_4_1          |[0m - ** ---------- .> transport:   redis://redis:6379/0
+[32mworker_4_1          |[0m - ** ---------- .> results:     redis://redis:6379/0
+[32mworker_4_1          |[0m - *** --- * --- .> concurrency: 2 (prefork)
+[32mworker_4_1          |[0m -- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+[32mworker_4_1          |[0m --- ***** ----- 
+[32mworker_4_1          |[0m  -------------- [queues]
+[32mworker_4_1          |[0m                 .> celery           exchange=celery(direct) key=celery
+[32mworker_4_1          |[0m                 .> compute          exchange=compute(direct) key=compute
+[32mworker_4_1          |[0m                 .> highmemory       exchange=highmemory(direct) key=highmemory
+[32mworker_4_1          |[0m 
+[32mworker_4_1          |[0m [tasks]
+[32mworker_4_1          |[0m   . entityservice.tasks.base_task.celery_bug_fix
+[32mworker_4_1          |[0m   . entityservice.tasks.base_task.run_failed_handler
+[32mworker_4_1          |[0m   . entityservice.tasks.comparing.aggregate_comparisons
+[32mworker_4_1          |[0m   . entityservice.tasks.comparing.compute_filter_similarity
+[32mworker_4_1          |[0m   . entityservice.tasks.comparing.create_comparison_jobs
+[32mworker_4_1          |[0m   . entityservice.tasks.encoding_uploading.handle_raw_upload
+[32mworker_4_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data
+[32mworker_4_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data_encodings_only
+[32mworker_4_1          |[0m   . entityservice.tasks.mark_run_complete.mark_run_complete
+[32mworker_4_1          |[0m   . entityservice.tasks.permutation.permute_mapping_data
+[32mworker_4_1          |[0m   . entityservice.tasks.permutation.save_and_permute
+[32mworker_4_1          |[0m   . entityservice.tasks.pre_run_check.check_for_executable_runs
+[32mworker_4_1          |[0m   . entityservice.tasks.project_cleanup.delete_minio_objects
+[32mworker_4_1          |[0m   . entityservice.tasks.project_cleanup.remove_project
+[32mworker_4_1          |[0m   . entityservice.tasks.run.prerun_check
+[32mworker_4_1          |[0m   . entityservice.tasks.solver.solver_task
+[32mworker_4_1          |[0m   . entityservice.tasks.stats.calculate_comparison_rate
+[32mworker_4_1          |[0m 
+[33mworker_3_1          |[0m [2021-12-27 23:15:28,106: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[35mworker_5_1          |[0m  
+[35mworker_5_1          |[0m  -------------- celery@25a0f6593d82 v5.1.2 (sun-harmonics)
+[35mworker_5_1          |[0m --- ***** ----- 
+[35mworker_5_1          |[0m -- ******* ---- Linux-5.10.60.1-microsoft-standard-WSL2-x86_64-with 2021-12-27 23:15:27
+[35mworker_5_1          |[0m - *** --- * --- 
+[35mworker_5_1          |[0m - ** ---------- [config]
+[35mworker_5_1          |[0m - ** ---------- .> app:         tasks:0x7f73a8d15c10
+[35mworker_5_1          |[0m - ** ---------- .> transport:   redis://redis:6379/0
+[35mworker_5_1          |[0m - ** ---------- .> results:     redis://redis:6379/0
+[35mworker_5_1          |[0m - *** --- * --- .> concurrency: 2 (prefork)
+[35mworker_5_1          |[0m -- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+[35mworker_5_1          |[0m --- ***** ----- 
+[35mworker_5_1          |[0m  -------------- [queues]
+[35mworker_5_1          |[0m                 .> celery           exchange=celery(direct) key=celery
+[35mworker_5_1          |[0m                 .> compute          exchange=compute(direct) key=compute
+[35mworker_5_1          |[0m                 .> highmemory       exchange=highmemory(direct) key=highmemory
+[35mworker_5_1          |[0m 
+[35mworker_5_1          |[0m [tasks]
+[35mworker_5_1          |[0m   . entityservice.tasks.base_task.celery_bug_fix
+[35mworker_5_1          |[0m   . entityservice.tasks.base_task.run_failed_handler
+[35mworker_5_1          |[0m   . entityservice.tasks.comparing.aggregate_comparisons
+[35mworker_5_1          |[0m   . entityservice.tasks.comparing.compute_filter_similarity
+[35mworker_5_1          |[0m   . entityservice.tasks.comparing.create_comparison_jobs
+[35mworker_5_1          |[0m   . entityservice.tasks.encoding_uploading.handle_raw_upload
+[35mworker_5_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data
+[35mworker_5_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data_encodings_only
+[35mworker_5_1          |[0m   . entityservice.tasks.mark_run_complete.mark_run_complete
+[35mworker_5_1          |[0m   . entityservice.tasks.permutation.permute_mapping_data
+[35mworker_5_1          |[0m   . entityservice.tasks.permutation.save_and_permute
+[35mworker_5_1          |[0m   . entityservice.tasks.pre_run_check.check_for_executable_runs
+[35mworker_5_1          |[0m   . entityservice.tasks.project_cleanup.delete_minio_objects
+[35mworker_5_1          |[0m   . entityservice.tasks.project_cleanup.remove_project
+[35mworker_5_1          |[0m   . entityservice.tasks.run.prerun_check
+[35mworker_5_1          |[0m   . entityservice.tasks.solver.solver_task
+[35mworker_5_1          |[0m   . entityservice.tasks.stats.calculate_comparison_rate
+[35mworker_5_1          |[0m 
+[35;1mworker_10_1         |[0m [2021-12-27 23:15:27,636: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[35;1mworker_10_1         |[0m [2021-12-27 23:15:27,636: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[32mworker_4_1          |[0m [2021-12-27 23:15:26,937: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[32mworker_4_1          |[0m [2021-12-27 23:15:26,937: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[32mworker_4_1          |[0m [2021-12-27 23:15:26,937: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[35;1mworker_10_1         |[0m [2021-12-27 23:15:27,640: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[35;1mworker_10_1         |[0m [2021-12-27 23:15:27,640: DEBUG/ForkPoolWorker-2] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[32mworker_4_1          |[0m [2021-12-27 23:15:26,938: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[32mworker_4_1          |[0m [2021-12-27 23:15:26,938: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[35mworker_5_1          |[0m [2021-12-27 23:15:27,765: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[32mworker_4_1          |[0m [2021-12-27 23:15:26,938: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[32mworker_4_1          |[0m [2021-12-27 23:15:26,942: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[32mworker_4_1          |[0m [2021-12-27 23:15:26,942: DEBUG/ForkPoolWorker-1] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[33mworker_3_1          |[0m [2021-12-27 23:15:28,106: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[35mworker_5_1          |[0m [2021-12-27 23:15:27,765: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[35mworker_5_1          |[0m [2021-12-27 23:15:27,765: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[32mworker_4_1          |[0m [2021-12-27 23:15:26,996: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[35mworker_5_1          |[0m [2021-12-27 23:15:27,765: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[35mworker_5_1          |[0m [2021-12-27 23:15:27,765: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[33mworker_3_1          |[0m [2021-12-27 23:15:28,107: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[36;1mworker_7_1          |[0m  
+[36;1mworker_7_1          |[0m  -------------- celery@ab45d5a841a6 v5.1.2 (sun-harmonics)
+[36;1mworker_7_1          |[0m --- ***** ----- 
+[36;1mworker_7_1          |[0m -- ******* ---- Linux-5.10.60.1-microsoft-standard-WSL2-x86_64-with 2021-12-27 23:15:28
+[36;1mworker_7_1          |[0m - *** --- * --- 
+[36;1mworker_7_1          |[0m - ** ---------- [config]
+[36;1mworker_7_1          |[0m - ** ---------- .> app:         tasks:0x7f1e54abab50
+[36;1mworker_7_1          |[0m - ** ---------- .> transport:   redis://redis:6379/0
+[36;1mworker_7_1          |[0m - ** ---------- .> results:     redis://redis:6379/0
+[36;1mworker_7_1          |[0m - *** --- * --- .> concurrency: 2 (prefork)
+[36;1mworker_7_1          |[0m -- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+[36;1mworker_7_1          |[0m --- ***** ----- 
+[36;1mworker_7_1          |[0m  -------------- [queues]
+[36;1mworker_7_1          |[0m                 .> celery           exchange=celery(direct) key=celery
+[36;1mworker_7_1          |[0m                 .> compute          exchange=compute(direct) key=compute
+[36;1mworker_7_1          |[0m                 .> highmemory       exchange=highmemory(direct) key=highmemory
+[36;1mworker_7_1          |[0m 
+[36;1mworker_7_1          |[0m [tasks]
+[36;1mworker_7_1          |[0m   . entityservice.tasks.base_task.celery_bug_fix
+[36;1mworker_7_1          |[0m   . entityservice.tasks.base_task.run_failed_handler
+[36;1mworker_7_1          |[0m   . entityservice.tasks.comparing.aggregate_comparisons
+[36;1mworker_7_1          |[0m   . entityservice.tasks.comparing.compute_filter_similarity
+[36;1mworker_7_1          |[0m   . entityservice.tasks.comparing.create_comparison_jobs
+[36;1mworker_7_1          |[0m   . entityservice.tasks.encoding_uploading.handle_raw_upload
+[36;1mworker_7_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data
+[36;1mworker_7_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data_encodings_only
+[36;1mworker_7_1          |[0m   . entityservice.tasks.mark_run_complete.mark_run_complete
+[36;1mworker_7_1          |[0m   . entityservice.tasks.permutation.permute_mapping_data
+[36;1mworker_7_1          |[0m   . entityservice.tasks.permutation.save_and_permute
+[36;1mworker_7_1          |[0m   . entityservice.tasks.pre_run_check.check_for_executable_runs
+[36;1mworker_7_1          |[0m   . entityservice.tasks.project_cleanup.delete_minio_objects
+[36;1mworker_7_1          |[0m   . entityservice.tasks.project_cleanup.remove_project
+[36;1mworker_7_1          |[0m   . entityservice.tasks.run.prerun_check
+[36;1mworker_7_1          |[0m   . entityservice.tasks.solver.solver_task
+[36;1mworker_7_1          |[0m   . entityservice.tasks.stats.calculate_comparison_rate
+[36;1mworker_7_1          |[0m 
+[35mworker_5_1          |[0m [2021-12-27 23:15:27,766: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[32mworker_4_1          |[0m [2021-12-27 23:15:26,996: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[32mworker_4_1          |[0m [2021-12-27 23:15:26,996: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[32mworker_4_1          |[0m [2021-12-27 23:15:26,997: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[32mworker_4_1          |[0m [2021-12-27 23:15:26,997: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[32mworker_4_1          |[0m [2021-12-27 23:15:26,997: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[32mworker_4_1          |[0m [2021-12-27 23:15:27,000: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[32mworker_4_1          |[0m [2021-12-27 23:15:27,000: DEBUG/ForkPoolWorker-2] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[33;1mworker_8_1          |[0m  
+[33;1mworker_8_1          |[0m  -------------- celery@b0feff9aca7c v5.1.2 (sun-harmonics)
+[33;1mworker_8_1          |[0m --- ***** ----- 
+[33;1mworker_8_1          |[0m -- ******* ---- Linux-5.10.60.1-microsoft-standard-WSL2-x86_64-with 2021-12-27 23:15:28
+[33;1mworker_8_1          |[0m - *** --- * --- 
+[33;1mworker_8_1          |[0m - ** ---------- [config]
+[33;1mworker_8_1          |[0m - ** ---------- .> app:         tasks:0x7ff6e65aab80
+[33;1mworker_8_1          |[0m - ** ---------- .> transport:   redis://redis:6379/0
+[33;1mworker_8_1          |[0m - ** ---------- .> results:     redis://redis:6379/0
+[33;1mworker_8_1          |[0m - *** --- * --- .> concurrency: 2 (prefork)
+[33;1mworker_8_1          |[0m -- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+[33;1mworker_8_1          |[0m --- ***** ----- 
+[33;1mworker_8_1          |[0m  -------------- [queues]
+[33;1mworker_8_1          |[0m                 .> celery           exchange=celery(direct) key=celery
+[33;1mworker_8_1          |[0m                 .> compute          exchange=compute(direct) key=compute
+[33;1mworker_8_1          |[0m                 .> highmemory       exchange=highmemory(direct) key=highmemory
+[33;1mworker_8_1          |[0m 
+[33;1mworker_8_1          |[0m [tasks]
+[33;1mworker_8_1          |[0m   . entityservice.tasks.base_task.celery_bug_fix
+[33;1mworker_8_1          |[0m   . entityservice.tasks.base_task.run_failed_handler
+[33;1mworker_8_1          |[0m   . entityservice.tasks.comparing.aggregate_comparisons
+[33;1mworker_8_1          |[0m   . entityservice.tasks.comparing.compute_filter_similarity
+[33;1mworker_8_1          |[0m   . entityservice.tasks.comparing.create_comparison_jobs
+[33;1mworker_8_1          |[0m   . entityservice.tasks.encoding_uploading.handle_raw_upload
+[33;1mworker_8_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data
+[33;1mworker_8_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data_encodings_only
+[33;1mworker_8_1          |[0m   . entityservice.tasks.mark_run_complete.mark_run_complete
+[33;1mworker_8_1          |[0m   . entityservice.tasks.permutation.permute_mapping_data
+[33;1mworker_8_1          |[0m   . entityservice.tasks.permutation.save_and_permute
+[33;1mworker_8_1          |[0m   . entityservice.tasks.pre_run_check.check_for_executable_runs
+[33;1mworker_8_1          |[0m   . entityservice.tasks.project_cleanup.delete_minio_objects
+[33;1mworker_8_1          |[0m   . entityservice.tasks.project_cleanup.remove_project
+[33;1mworker_8_1          |[0m   . entityservice.tasks.run.prerun_check
+[33;1mworker_8_1          |[0m   . entityservice.tasks.solver.solver_task
+[33;1mworker_8_1          |[0m   . entityservice.tasks.stats.calculate_comparison_rate
+[33;1mworker_8_1          |[0m 
+[33;1mworker_8_1          |[0m [2021-12-27 23:15:28,148: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[33;1mworker_8_1          |[0m [2021-12-27 23:15:28,149: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[36mworker_2_1          |[0m  
+[36mworker_2_1          |[0m  -------------- celery@e6b6faf37d45 v5.1.2 (sun-harmonics)
+[36mworker_2_1          |[0m --- ***** ----- 
+[36mworker_2_1          |[0m -- ******* ---- Linux-5.10.60.1-microsoft-standard-WSL2-x86_64-with 2021-12-27 23:15:28
+[36mworker_2_1          |[0m - *** --- * --- 
+[36mworker_2_1          |[0m - ** ---------- [config]
+[36mworker_2_1          |[0m - ** ---------- .> app:         tasks:0x7f6543a5bc10
+[36mworker_2_1          |[0m - ** ---------- .> transport:   redis://redis:6379/0
+[36mworker_2_1          |[0m - ** ---------- .> results:     redis://redis:6379/0
+[36mworker_2_1          |[0m - *** --- * --- .> concurrency: 2 (prefork)
+[36mworker_2_1          |[0m -- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+[36mworker_2_1          |[0m --- ***** ----- 
+[36mworker_2_1          |[0m  -------------- [queues]
+[36mworker_2_1          |[0m                 .> celery           exchange=celery(direct) key=celery
+[36mworker_2_1          |[0m                 .> compute          exchange=compute(direct) key=compute
+[36mworker_2_1          |[0m                 .> highmemory       exchange=highmemory(direct) key=highmemory
+[36mworker_2_1          |[0m 
+[36mworker_2_1          |[0m [tasks]
+[36mworker_2_1          |[0m   . entityservice.tasks.base_task.celery_bug_fix
+[36mworker_2_1          |[0m   . entityservice.tasks.base_task.run_failed_handler
+[36mworker_2_1          |[0m   . entityservice.tasks.comparing.aggregate_comparisons
+[36mworker_2_1          |[0m   . entityservice.tasks.comparing.compute_filter_similarity
+[36mworker_2_1          |[0m   . entityservice.tasks.comparing.create_comparison_jobs
+[36mworker_2_1          |[0m   . entityservice.tasks.encoding_uploading.handle_raw_upload
+[36mworker_2_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data
+[36mworker_2_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data_encodings_only
+[36mworker_2_1          |[0m   . entityservice.tasks.mark_run_complete.mark_run_complete
+[36mworker_2_1          |[0m   . entityservice.tasks.permutation.permute_mapping_data
+[36mworker_2_1          |[0m   . entityservice.tasks.permutation.save_and_permute
+[36mworker_2_1          |[0m   . entityservice.tasks.pre_run_check.check_for_executable_runs
+[36mworker_2_1          |[0m   . entityservice.tasks.project_cleanup.delete_minio_objects
+[36mworker_2_1          |[0m   . entityservice.tasks.project_cleanup.remove_project
+[36mworker_2_1          |[0m   . entityservice.tasks.run.prerun_check
+[36mworker_2_1          |[0m   . entityservice.tasks.solver.solver_task
+[36mworker_2_1          |[0m   . entityservice.tasks.stats.calculate_comparison_rate
+[36mworker_2_1          |[0m 
+[33;1mworker_8_1          |[0m [2021-12-27 23:15:28,149: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[33;1manonlink_objectstore_init_1 exited with code 0
+[0m[35mworker_5_1          |[0m [2021-12-27 23:15:27,769: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[35mworker_5_1          |[0m [2021-12-27 23:15:27,769: DEBUG/ForkPoolWorker-1] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[35mworker_5_1          |[0m [2021-12-27 23:15:27,825: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[35mworker_5_1          |[0m [2021-12-27 23:15:27,825: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[35mworker_5_1          |[0m [2021-12-27 23:15:27,826: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[33mworker_3_1          |[0m [2021-12-27 23:15:28,112: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[33;1mworker_8_1          |[0m [2021-12-27 23:15:28,149: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[35mworker_5_1          |[0m [2021-12-27 23:15:27,826: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[35mworker_5_1          |[0m [2021-12-27 23:15:27,826: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[33mworker_3_1          |[0m [2021-12-27 23:15:28,112: DEBUG/ForkPoolWorker-1] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[33;1mworker_8_1          |[0m [2021-12-27 23:15:28,149: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[35mworker_5_1          |[0m [2021-12-27 23:15:27,826: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[33mworker_3_1          |[0m [2021-12-27 23:15:28,186: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[33;1mworker_8_1          |[0m [2021-12-27 23:15:28,149: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[35mworker_5_1          |[0m [2021-12-27 23:15:27,830: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[35mworker_5_1          |[0m [2021-12-27 23:15:27,830: DEBUG/ForkPoolWorker-2] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[33;1mworker_8_1          |[0m [2021-12-27 23:15:28,154: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[33;1mworker_8_1          |[0m [2021-12-27 23:15:28,154: DEBUG/ForkPoolWorker-1] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[33mworker_3_1          |[0m [2021-12-27 23:15:28,187: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[33mworker_3_1          |[0m [2021-12-27 23:15:28,187: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[33;1mworker_8_1          |[0m [2021-12-27 23:15:28,225: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[33mworker_3_1          |[0m [2021-12-27 23:15:28,187: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[33mworker_3_1          |[0m [2021-12-27 23:15:28,187: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[33mworker_3_1          |[0m [2021-12-27 23:15:28,188: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[36;1mworker_7_1          |[0m [2021-12-27 23:15:28,094: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[36;1mworker_7_1          |[0m [2021-12-27 23:15:28,095: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[33mworker_3_1          |[0m [2021-12-27 23:15:28,191: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[33mworker_3_1          |[0m [2021-12-27 23:15:28,192: DEBUG/ForkPoolWorker-2] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[36;1mworker_7_1          |[0m [2021-12-27 23:15:28,095: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[36;1mworker_7_1          |[0m [2021-12-27 23:15:28,095: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[36;1mworker_7_1          |[0m [2021-12-27 23:15:28,095: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[36;1mworker_7_1          |[0m [2021-12-27 23:15:28,095: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[36;1mworker_7_1          |[0m [2021-12-27 23:15:28,099: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[36;1mworker_7_1          |[0m [2021-12-27 23:15:28,100: DEBUG/ForkPoolWorker-1] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[36;1mworker_7_1          |[0m [2021-12-27 23:15:28,167: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[36;1mworker_7_1          |[0m [2021-12-27 23:15:28,168: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[33;1mworker_8_1          |[0m [2021-12-27 23:15:28,226: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[36;1mworker_7_1          |[0m [2021-12-27 23:15:28,168: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[36;1mworker_7_1          |[0m [2021-12-27 23:15:28,168: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[36;1mworker_7_1          |[0m [2021-12-27 23:15:28,168: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[33;1mworker_8_1          |[0m [2021-12-27 23:15:28,226: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[33;1mworker_8_1          |[0m [2021-12-27 23:15:28,226: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[36;1mworker_7_1          |[0m [2021-12-27 23:15:28,169: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[36;1mworker_7_1          |[0m [2021-12-27 23:15:28,174: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[36;1mworker_7_1          |[0m [2021-12-27 23:15:28,174: DEBUG/ForkPoolWorker-2] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[33;1mworker_8_1          |[0m [2021-12-27 23:15:28,226: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[33;1mworker_8_1          |[0m [2021-12-27 23:15:28,227: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[33;1mworker_8_1          |[0m [2021-12-27 23:15:28,230: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[33;1mworker_8_1          |[0m [2021-12-27 23:15:28,231: DEBUG/ForkPoolWorker-2] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[36mworker_2_1          |[0m [2021-12-27 23:15:28,882: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[36mworker_2_1          |[0m [2021-12-27 23:15:28,883: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[36mworker_2_1          |[0m [2021-12-27 23:15:28,883: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[36mworker_2_1          |[0m [2021-12-27 23:15:28,883: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[36mworker_2_1          |[0m [2021-12-27 23:15:28,883: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[36mworker_2_1          |[0m [2021-12-27 23:15:28,883: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[36mworker_2_1          |[0m [2021-12-27 23:15:28,887: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[36mworker_2_1          |[0m [2021-12-27 23:15:28,887: DEBUG/ForkPoolWorker-1] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[36mworker_2_1          |[0m [2021-12-27 23:15:28,947: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[36mworker_2_1          |[0m [2021-12-27 23:15:28,948: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[36mworker_2_1          |[0m [2021-12-27 23:15:28,948: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[36mworker_2_1          |[0m [2021-12-27 23:15:28,948: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[36mworker_2_1          |[0m [2021-12-27 23:15:28,948: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[36mworker_2_1          |[0m [2021-12-27 23:15:28,948: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[36mworker_2_1          |[0m [2021-12-27 23:15:28,952: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[36mworker_2_1          |[0m [2021-12-27 23:15:28,952: DEBUG/ForkPoolWorker-2] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[34mworker_6_1          |[0m  
+[34mworker_6_1          |[0m  -------------- celery@6122dbccc77a v5.1.2 (sun-harmonics)
+[34mworker_6_1          |[0m --- ***** ----- 
+[34mworker_6_1          |[0m -- ******* ---- Linux-5.10.60.1-microsoft-standard-WSL2-x86_64-with 2021-12-27 23:15:28
+[34mworker_6_1          |[0m - *** --- * --- 
+[34mworker_6_1          |[0m - ** ---------- [config]
+[34mworker_6_1          |[0m - ** ---------- .> app:         tasks:0x7f35777adbb0
+[34mworker_6_1          |[0m - ** ---------- .> transport:   redis://redis:6379/0
+[34mworker_6_1          |[0m - ** ---------- .> results:     redis://redis:6379/0
+[34mworker_6_1          |[0m - *** --- * --- .> concurrency: 2 (prefork)
+[34mworker_6_1          |[0m -- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+[34mworker_6_1          |[0m --- ***** ----- 
+[34mworker_6_1          |[0m  -------------- [queues]
+[34mworker_6_1          |[0m                 .> celery           exchange=celery(direct) key=celery
+[34mworker_6_1          |[0m                 .> compute          exchange=compute(direct) key=compute
+[34mworker_6_1          |[0m                 .> highmemory       exchange=highmemory(direct) key=highmemory
+[34mworker_6_1          |[0m 
+[34mworker_6_1          |[0m [tasks]
+[34mworker_6_1          |[0m   . entityservice.tasks.base_task.celery_bug_fix
+[34mworker_6_1          |[0m   . entityservice.tasks.base_task.run_failed_handler
+[34mworker_6_1          |[0m   . entityservice.tasks.comparing.aggregate_comparisons
+[34mworker_6_1          |[0m   . entityservice.tasks.comparing.compute_filter_similarity
+[34mworker_6_1          |[0m   . entityservice.tasks.comparing.create_comparison_jobs
+[34mworker_6_1          |[0m   . entityservice.tasks.encoding_uploading.handle_raw_upload
+[34mworker_6_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data
+[34mworker_6_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data_encodings_only
+[34mworker_6_1          |[0m   . entityservice.tasks.mark_run_complete.mark_run_complete
+[34mworker_6_1          |[0m   . entityservice.tasks.permutation.permute_mapping_data
+[34mworker_6_1          |[0m   . entityservice.tasks.permutation.save_and_permute
+[34mworker_6_1          |[0m   . entityservice.tasks.pre_run_check.check_for_executable_runs
+[34mworker_6_1          |[0m   . entityservice.tasks.project_cleanup.delete_minio_objects
+[34mworker_6_1          |[0m   . entityservice.tasks.project_cleanup.remove_project
+[34mworker_6_1          |[0m   . entityservice.tasks.run.prerun_check
+[34mworker_6_1          |[0m   . entityservice.tasks.solver.solver_task
+[34mworker_6_1          |[0m   . entityservice.tasks.stats.calculate_comparison_rate
+[34mworker_6_1          |[0m 
+[34mworker_6_1          |[0m [2021-12-27 23:15:29,074: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[34mworker_6_1          |[0m [2021-12-27 23:15:29,074: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[34mworker_6_1          |[0m [2021-12-27 23:15:29,074: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[34mworker_6_1          |[0m [2021-12-27 23:15:29,074: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[34mworker_6_1          |[0m [2021-12-27 23:15:29,074: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[34mworker_6_1          |[0m [2021-12-27 23:15:29,075: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[34mworker_6_1          |[0m [2021-12-27 23:15:29,080: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[34mworker_6_1          |[0m [2021-12-27 23:15:29,080: DEBUG/ForkPoolWorker-1] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[34mworker_6_1          |[0m [2021-12-27 23:15:29,142: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[34mworker_6_1          |[0m [2021-12-27 23:15:29,142: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[34mworker_6_1          |[0m [2021-12-27 23:15:29,142: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[34mworker_6_1          |[0m [2021-12-27 23:15:29,142: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[34mworker_6_1          |[0m [2021-12-27 23:15:29,142: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[34mworker_6_1          |[0m [2021-12-27 23:15:29,143: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[34mworker_6_1          |[0m [2021-12-27 23:15:29,146: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[34mworker_6_1          |[0m [2021-12-27 23:15:29,146: DEBUG/ForkPoolWorker-2] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[32;1mworker_9_1          |[0m  
+[32;1mworker_9_1          |[0m  -------------- celery@3c3b7de7b019 v5.1.2 (sun-harmonics)
+[32;1mworker_9_1          |[0m --- ***** ----- 
+[32;1mworker_9_1          |[0m -- ******* ---- Linux-5.10.60.1-microsoft-standard-WSL2-x86_64-with 2021-12-27 23:15:29
+[32;1mworker_9_1          |[0m - *** --- * --- 
+[32;1mworker_9_1          |[0m - ** ---------- [config]
+[32;1mworker_9_1          |[0m - ** ---------- .> app:         tasks:0x7fabadcd8b80
+[32;1mworker_9_1          |[0m - ** ---------- .> transport:   redis://redis:6379/0
+[32;1mworker_9_1          |[0m - ** ---------- .> results:     redis://redis:6379/0
+[32;1mworker_9_1          |[0m - *** --- * --- .> concurrency: 2 (prefork)
+[32;1mworker_9_1          |[0m -- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+[32;1mworker_9_1          |[0m --- ***** ----- 
+[32;1mworker_9_1          |[0m  -------------- [queues]
+[32;1mworker_9_1          |[0m                 .> celery           exchange=celery(direct) key=celery
+[32;1mworker_9_1          |[0m                 .> compute          exchange=compute(direct) key=compute
+[32;1mworker_9_1          |[0m                 .> highmemory       exchange=highmemory(direct) key=highmemory
+[32;1mworker_9_1          |[0m 
+[32;1mworker_9_1          |[0m [tasks]
+[32;1mworker_9_1          |[0m   . entityservice.tasks.base_task.celery_bug_fix
+[32;1mworker_9_1          |[0m   . entityservice.tasks.base_task.run_failed_handler
+[32;1mworker_9_1          |[0m   . entityservice.tasks.comparing.aggregate_comparisons
+[32;1mworker_9_1          |[0m   . entityservice.tasks.comparing.compute_filter_similarity
+[32;1mworker_9_1          |[0m   . entityservice.tasks.comparing.create_comparison_jobs
+[32;1mworker_9_1          |[0m   . entityservice.tasks.encoding_uploading.handle_raw_upload
+[32;1mworker_9_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data
+[32;1mworker_9_1          |[0m   . entityservice.tasks.encoding_uploading.pull_external_data_encodings_only
+[32;1mworker_9_1          |[0m   . entityservice.tasks.mark_run_complete.mark_run_complete
+[32;1mworker_9_1          |[0m   . entityservice.tasks.permutation.permute_mapping_data
+[32;1mworker_9_1          |[0m   . entityservice.tasks.permutation.save_and_permute
+[32;1mworker_9_1          |[0m   . entityservice.tasks.pre_run_check.check_for_executable_runs
+[32;1mworker_9_1          |[0m   . entityservice.tasks.project_cleanup.delete_minio_objects
+[32;1mworker_9_1          |[0m   . entityservice.tasks.project_cleanup.remove_project
+[32;1mworker_9_1          |[0m   . entityservice.tasks.run.prerun_check
+[32;1mworker_9_1          |[0m   . entityservice.tasks.solver.solver_task
+[32;1mworker_9_1          |[0m   . entityservice.tasks.stats.calculate_comparison_rate
+[32;1mworker_9_1          |[0m 
+[32;1mworker_9_1          |[0m [2021-12-27 23:15:29,774: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[32;1mworker_9_1          |[0m [2021-12-27 23:15:29,775: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[32;1mworker_9_1          |[0m [2021-12-27 23:15:29,775: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[32;1mworker_9_1          |[0m [2021-12-27 23:15:29,775: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[32;1mworker_9_1          |[0m [2021-12-27 23:15:29,775: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[32;1mworker_9_1          |[0m [2021-12-27 23:15:29,775: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[32;1mworker_9_1          |[0m [2021-12-27 23:15:29,779: INFO/ForkPoolWorker-1] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[32;1mworker_9_1          |[0m [2021-12-27 23:15:29,780: DEBUG/ForkPoolWorker-1] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[32;1mworker_9_1          |[0m [2021-12-27 23:15:29,834: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[32;1mworker_9_1          |[0m [2021-12-27 23:15:29,835: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[32;1mworker_9_1          |[0m [2021-12-27 23:15:29,835: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m! ! ! INITIALIZING WORKER ! ! ! [0m [[34m[1mentityservice.tasks[0m] 
+[32;1mworker_9_1          |[0m [2021-12-27 23:15:29,835: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m-------------                 [0m [[34m[1mentityservice.tasks[0m] 
+[32;1mworker_9_1          |[0m [2021-12-27 23:15:29,835: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1m                              [0m [[34m[1mentityservice.tasks[0m] 
+[32;1mworker_9_1          |[0m [2021-12-27 23:15:29,835: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mInitializing the database connection pool. db: 'postgres', user: 'postgres', host: 'db'.[0m [[34m[1mentityservice.database.util[0m] 
+[32;1mworker_9_1          |[0m [2021-12-27 23:15:29,839: INFO/ForkPoolWorker-2] [[32m[1minfo     [0m] [1mSetting up worker process     [0m [[34m[1mentityservice.tasks[0m] 
+[32;1mworker_9_1          |[0m [2021-12-27 23:15:29,839: DEBUG/ForkPoolWorker-2] [[32m[1mdebug    [0m] [1mDebug logging enabled         [0m [[34m[1mentityservice.tasks[0m] 
+[36;1mnginx_1             |[0m [INFO]  Starting web server
+[36;1mnginx_1             |[0m [INFO]  Backend: backend
