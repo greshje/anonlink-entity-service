@@ -47,6 +47,7 @@ def setup_structlog():
     )
 
 
+
 class StdErrFilter(logging.Filter):
     """
     Filter for the stderr stream

@@ -5,7 +5,6 @@ import io
 import itertools
 import json
 import os
-import util.logging.lrp_logger as lrp
 
 import binascii
 import bitmath
@@ -157,7 +156,7 @@ def clks_uploaded_to_project(project_id, check_data_ready=False):
             log.info("Parties where data is uploaded: {}".format(parties_contributed))
         number_parties = get_project_column(conn, project_id, 'parties')
     log.info("{}/{} parties have contributed clks".format(parties_contributed, number_parties))
-    lrp.log("{}/{} parties have contributed clks".format(parties_contributed, number_parties))
+    log.info("LOG_FILE: {}/{} parties have contributed clks".format(parties_contributed, number_parties))
     # log status when were done
     if parties_contributed == number_parties:
         msg = ""
@@ -168,7 +167,7 @@ def clks_uploaded_to_project(project_id, check_data_ready=False):
         msg += "--\n"
         msg += "-- * * * \n\n\n"
         logger.info(msg)
-        lrp.log("Done with clks.")
+        logger.info("LOG_FILE: Done with clks.")
     else:
         logger.info("* * * NOT DONE WITH CLKS YET * * *")
     # done

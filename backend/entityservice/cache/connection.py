@@ -1,7 +1,6 @@
 import redis
 from redis.sentinel import Sentinel
 import structlog
-import util.logging.lrp_logger as lrp
 
 from entityservice.settings import Config as config
 
@@ -17,7 +16,7 @@ def connect_to_redis(read_only=False):
 
     """
     logger.debug("Connecting to redis", server=redis_host, port=redis_sentinel_port)
-    lrp.log("Connecting to redis")
+    logger.info("LOG_FILE: Connecting to redis")
     if config.REDIS_USE_SENTINEL:
         sentinel_service = Sentinel([(redis_host, redis_sentinel_port)], password=redis_pass, socket_timeout=5)
         sentinel_name = config.REDIS_SENTINEL_NAME

@@ -2,7 +2,6 @@ import array
 import heapq
 import itertools
 import operator
-import util.logging.lrp_logger as lrp
 
 from minio.deleteobjects import DeleteObject
 from minio.error import MinioException
@@ -279,13 +278,13 @@ def compute_filter_similarity(package, project_id, run_id, threshold, encoding_s
 
     def new_child_span(name, parent_scope=None):
         log.debug(f"Entering span '{name}'")
-        lrp.log(f"Entering span '{name}'")
+        log.info(f"LOG_FILE: Entering span '{name}'")
         if parent_scope is None:
             parent_scope = compute_filter_similarity
         return compute_filter_similarity.tracer.start_active_span(name, child_of=parent_scope.span)
 
     log.debug(f"Computing similarities for {len(package)} chunks of filters")
-    lrp.log(f"Computing similarities for {len(package)} chunks of filters")
+    log.info(f"LOG_FILE: Computing similarities for {len(package)} chunks of filters")
     log.debug("Checking that the resource exists (in case of run being canceled/deleted)")
     assert_valid_run(project_id, run_id, log)
 
@@ -342,7 +341,7 @@ def compute_filter_similarity(package, project_id, run_id, threshold, encoding_s
                 num_comparisons += enc_dp1_size * enc_dp2_size
                 sim_results.append((sims, (rec_is0, rec_is1), chunk_dp1['datasetIndex'], chunk_dp2['datasetIndex']))
         log.debug(f'comparison is done. {num_comparisons} comparisons got {num_results} pairs above the threshold')
-        lrp.log(f'comparison is done. {num_comparisons} comparisons got {num_results} pairs above the threshold')
+        log.info(f'LOG_FILE: comparison is done. {num_comparisons} comparisons got {num_results} pairs above the threshold')
 
     # progress reporting
     log.debug('Encoding similarities calculated')
