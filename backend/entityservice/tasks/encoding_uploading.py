@@ -200,6 +200,7 @@ def handle_raw_upload(project_id, dp_id, receipt_token, parent_span=None):
         expected_count, block_count = get_encoding_metadata(db, dp_id)
 
     log.info(f"Expecting to handle {expected_count} encodings in {block_count} blocks")
+    lrp.log(f"Expecting to handle {expected_count} encodings in {block_count} blocks")
     mc = connect_to_object_store()
     input_filename = Config.RAW_FILENAME_FMT.format(receipt_token)
     raw_data = mc.get_object(Config.MINIO_BUCKET, input_filename)
@@ -210,6 +211,7 @@ def handle_raw_upload(project_id, dp_id, receipt_token, parent_span=None):
         # output into database for each block (temp or direct to minio?)
         encoding_size, pipeline = convert_encodings_from_base64_to_binary(stream_json_clksnblocks(raw_data))
         log.info(f"Starting pipeline to store {encoding_size}B sized encodings in database")
+        lrp.log(f"Starting pipeline to store {encoding_size}B sized encodings in database")
         with DBConn() as db:
             store_encodings_in_db(db, dp_id, pipeline, encoding_size)
 

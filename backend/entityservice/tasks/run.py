@@ -1,4 +1,5 @@
 import psycopg2
+import util.logging.lrp_logger as lrp
 
 from entityservice.cache import progress as progress_cache
 from entityservice.cache.active_runs import set_run_state_active, is_run_missing
@@ -44,6 +45,7 @@ def prerun_check(project_id, run_id, parent_span=None):
         update_run_set_started(conn, run_id)
 
         log.debug("Updating redis cache for run")
+        lrp.log("Updating redis cache for run")
         set_run_state_active(run_id)
 
     create_comparison_jobs.apply_async(

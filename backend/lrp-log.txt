@@ -23,3 +23,43 @@ Done with clks.
 2021-12-26 19:15:09: 3/3 parties have contributed clks
 2021-12-26 19:15:09: Done with clks.
 2021-12-26 19:15:09: Done with clks.
+2021-12-27 08:41:53: Starting run
+2021-12-27 08:41:53: Expecting to handle 9 encodings in 1 blocks
+2021-12-27 08:41:53: Starting pipeline to store 512B sized encodings in database
+2021-12-27 08:41:53: Starting run
+2021-12-27 08:41:53: Expecting to handle 9 encodings in 1 blocks
+2021-12-27 08:41:53: 1/3 parties have contributed clks
+2021-12-27 08:41:53: Starting pipeline to store 512B sized encodings in database
+2021-12-27 08:41:53: 2/3 parties have contributed clks
+2021-12-27 08:41:55: Starting run
+2021-12-27 08:41:55: 2/3 parties have contributed clks
+2021-12-27 08:41:55: Expecting to handle 9 encodings in 1 blocks
+2021-12-27 08:41:55: Starting pipeline to store 512B sized encodings in database
+2021-12-27 08:41:55: 3/3 parties have contributed clks
+2021-12-27 08:41:55: Done with clks.
+2021-12-27 08:41:57: 3/3 parties have contributed clks
+2021-12-27 08:41:57: 3/3 parties have contributed clks
+2021-12-27 08:41:57: Done with clks.
+2021-12-27 08:41:57: Done with clks.
+2021-12-27 08:41:57: Connecting to redis
+2021-12-27 08:41:59: Connecting to redis
+2021-12-27 08:41:59: Updating redis cache for run
+2021-12-27 08:41:59: Connecting to redis
+2021-12-27 08:42:01: Computing similarities for 3 chunks of filters
+2021-12-27 08:42:01: Connecting to redis
+2021-12-27 08:42:01: Entering span 'fetching-encodings of package of size 3'
+2021-12-27 08:42:01: Entering span 'comparing-encodings'
+2021-12-27 08:42:01: Entering span 'comparing chunk 0'
+2021-12-27 08:42:01: Entering span 'comparing chunk 1'
+2021-12-27 08:42:01: Entering span 'comparing chunk 2'
+2021-12-27 08:42:01: comparison is done. 243 comparisons got 27 pairs above the threshold
+2021-12-27 08:42:01: Entering span 'update-comparison-progress'
+2021-12-27 08:42:01: Connecting to redis
+2021-12-27 08:42:01: Entering span 'check-within-candidate-limits'
+2021-12-27 08:42:01: Connecting to redis
+2021-12-27 08:42:01: Entering span 'save-comparison-results-to-minio'
+2021-12-27 08:42:03: Connecting to redis
+2021-12-27 08:42:06: Connecting to redis
+2021-12-27 08:42:06: Connecting to redis
+2021-12-27 08:42:06: Connecting to redis
+2021-12-27 08:42:06: Connecting to redis
