@@ -28,6 +28,11 @@ rm ./logs/lrp-log.txt
 touch ./logs/lrp-log.txt 
 # TAIL THE FULL LOG FILE (display the running process in a cygwin window)
 cygstart tail -f ./logs/full-log.txt
+# WRITE THE LONG RUNNING PROCESS LOG
+echo "Starting LRP log..." 
+( tail -f ./logs/full-log.txt | grep --line-buffered "LOG_FILE:" > ./logs/lrp-log.txt; ) &
+echo "Starting tail of ./logs/lrp-log.txt"
+cygstart tail -f ./logs/lrp-log.txt
 # START AES
 echo "Starting anonlink entity service (aes)..."
 echo "Process is running and writing log to ./full-log.txt"
