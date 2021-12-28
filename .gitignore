@@ -103,3 +103,7 @@ ENV/
 
 # Mypy
 .mypy_cache/
+
+# log files
+win/logs
+
