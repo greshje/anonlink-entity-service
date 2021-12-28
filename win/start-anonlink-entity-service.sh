@@ -12,6 +12,8 @@ echo
 echo "Pruning orphaned volumes"
 docker volume prune -f
 echo
+# CREATE LOG DIR
+mkdir ./logs
 # DELETE OLD FULL LOG FILE
 echo "Deleting old full log file..."
 touch full-log.txt
