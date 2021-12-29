@@ -1,4 +1,5 @@
 @echo off
+cls
 echo.
 echo.
 :: STOP CONTAINERS
@@ -16,6 +17,10 @@ echo.
 echo Deleting Images...
 :: for /F %i in ('docker images -a -q') do docker rmi -f %i
 FOR /f "tokens=*" %%i IN ('docker images -a -q') DO docker rmi -f %%i
+echo Doing Build...
+cd ..
+.\tools\build.sh 
+cd win
 echo.
 echo.
 echo Done.

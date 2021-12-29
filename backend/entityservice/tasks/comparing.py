@@ -365,17 +365,15 @@ def compute_filter_similarity(package, project_id, run_id, threshold, encoding_s
 
     # Save results file into minio
     with new_child_span('save-comparison-results-to-minio'):
-
+        log.info("LOG_FILE: comparing.py")
         file_iters = []
         file_sizes = []
         log.info("LOG_FILE: Starting minio save of {} records".format(len(sims)))
         cnt = 0
         for sims, (rec_is0, rec_is1), dp1_ds_idx, dp2_ds_idx in sim_results:
-            cnt += 1
+            cnt = cnt + 1
             num_sims = len(sims)
-            if cnt % 10000 == 1:
-                log.info("    LOG_FILE: Writing record {} of {}".format((cnt - 1), num_sims))
-
+            log.info("LOG_FILE: Writing for results {} of {}".format((cnt - 1), len(sim_results)))
             if num_sims:
                 # Make index arrays for serialization
                 index_1 = array.array('I', (dp1_ds_idx,)) * num_sims
