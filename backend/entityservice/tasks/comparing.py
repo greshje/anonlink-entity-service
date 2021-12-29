@@ -368,8 +368,13 @@ def compute_filter_similarity(package, project_id, run_id, threshold, encoding_s
 
         file_iters = []
         file_sizes = []
+        log.info("LOG_FILE: Starting minio save of {} records".format(len(sims)))
+        cnt = 0
         for sims, (rec_is0, rec_is1), dp1_ds_idx, dp2_ds_idx in sim_results:
+            cnt += 1
             num_sims = len(sims)
+            if cnt % 10000 == 1:
+                log.info("    LOG_FILE: Writing record {} of {}".format((cnt - 1), num_sims))
 
             if num_sims:
                 # Make index arrays for serialization
@@ -380,7 +385,7 @@ def compute_filter_similarity(package, project_id, run_id, threshold, encoding_s
                     = anonlink.serialization.dump_candidate_pairs_iter(chunk_results)
                 file_iters.append(iterable_to_stream(bytes_iter))
                 file_sizes.append(file_size)
-
+        log.info("LOG_FILE: Done with minio save")
         if len(file_iters) > 1:
             # we need to merge them first into one ordered thingy
             merged_file_iter, merged_file_size \
@@ -396,6 +401,7 @@ def compute_filter_similarity(package, project_id, run_id, threshold, encoding_s
             generate_code(12))
         task_span.log_kv({"edges": num_results})
         log.info("Writing {} intermediate results to file: {}".format(num_results, result_filename))
+        log.info("LOG_FILE: Writing {} intermediate results to file: {}".format(num_results, result_filename))
 
         mc = connect_to_object_store()
         try:
@@ -403,8 +409,9 @@ def compute_filter_similarity(package, project_id, run_id, threshold, encoding_s
                 Config.MINIO_BUCKET, result_filename, merged_file_iter, merged_file_size)
         except minio.S3Error as err:
             log.warning("Failed to store result in minio: {}".format(err))
+            log.warning("LOG_FILE: Failed to store result in minio: {}".format(err))
             raise
-
+        log.info("LOG_FILE: Finished Writing {} intermediate results to file: {}".format(num_results, result_filename))
     return num_results, merged_file_size, result_filename
 
 
