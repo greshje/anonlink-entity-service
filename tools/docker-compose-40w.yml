@@ -1,0 +1,795 @@
+version: '3.4'
+services:
+
+  db:
+    image: postgres:11.13
+    environment:
+      - POSTGRES_PASSWORD=rX%QpV7Xgyrz
+    volumes:
+      - psql:/var/lib/postgresql/data
+    #ports:
+    #- 5432:5432
+    healthcheck:
+      test: pg_isready -q -h db -p 5432 -U postgres
+      interval: 5s
+      timeout: 30s
+      retries: 5
+
+  minio:
+    image: minio/minio:RELEASE.2021-02-14T04-01-33Z
+    command: server /export
+    env_file:
+      - .env
+    volumes:
+      - minio:/export
+    ports:
+      - 9000:9000
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  redis:
+    image: redis:5.0
+
+  # The flask application server
+  backend:
+    image: data61/anonlink-app:${TAG:-latest}
+    env_file:
+      - .env
+    environment:
+      - FLASK_DB_MIN_CONNECTIONS=1
+      - FLASK_DB_MAX_CONNECTIONS=10
+    depends_on:
+      - db
+      - db_init
+      - redis
+      - minio
+      - objectstore_init
+
+  # The application server can also setup the database
+  db_init:
+    image: data61/anonlink-app:${TAG:-latest}
+    environment:
+      - DEBUG=true
+      - DATABASE_PASSWORD=rX%QpV7Xgyrz
+      - FLASK_APP=entityservice
+    entrypoint: /bin/sh -c "dockerize -wait tcp://db:5432 alembic upgrade head"
+    depends_on:
+      - db
+
+  # Setup the object store to have another more restricted user
+  objectstore_init:
+    image: minio/mc:RELEASE.2021-02-14T04-28-06Z
+    env_file:
+      - .env
+    entrypoint: |
+      /bin/sh /opt/init-object-store.sh
+    volumes:
+      - ./init-object-store.sh:/opt/init-object-store.sh:ro
+    depends_on:
+      - minio
+
+  # A celery worker
+  worker_1:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_2:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_3:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_4:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_5:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_6:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_7:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_8:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_9:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_10:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_11:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_12:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_13:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_14:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_15:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_16:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_17:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_18:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_19:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_20:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+
+  # A celery worker
+  worker_a1:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_a2:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_a3:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_a4:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_a5:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_a6:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_a7:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_a8:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_a9:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_a10:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_a11:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_a12:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_a13:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_a14:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+  # A celery worker
+  worker_a15:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_a16:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_a17:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_a18:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_a19:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+# A celery worker
+  worker_a20:
+    image: data61/anonlink-app:${TAG:-latest}
+    depends_on:
+      - redis
+      - db
+    command: celery -A entityservice.async_worker worker --loglevel=info -O fair -Q celery,compute,highmemory
+    env_file:
+      - .env
+    environment:
+      - CELERY_ACKS_LATE=true
+      - REDIS_USE_SENTINEL=false
+      - CELERYD_MAX_TASKS_PER_CHILD=2048
+      #- CHUNK_SIZE_AIM=300_000_000
+      - CELERY_DB_MIN_CONNECTIONS=1
+      - CELERY_DB_MAX_CONNECTIONS=3
+
+
+
+  nginx:
+    image: data61/anonlink-nginx:${TAG:-latest}
+    ports:
+      - 8851:8851
+    depends_on:
+      - backend
+    environment:
+      TARGET_SERVICE: backend
+      PUBLIC_PORT: 8851
+
+
+  # A celery monitor. Useful for debugging.
+#  celery_monitor:
+#    image: data61/anonlink-app:${TAG:-latest}
+#    depends_on:
+#      - redis
+#      - worker
+#    command: celery flower -A entityservice.async_worker
+#    ports:
+#      - 8888:8888
+
+
+# Jaeger UI is available at http://localhost:16686
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    environment:
+      COLLECTOR_ZIPKIN_HTTP_PORT: 9411
+#    ports:
+#      - 5775:5775/udp
+#      - 6831:6831/udp
+#      - 6832:6832/udp
+#      - 5778:5778
+#      - 16686:16686
+#      - 14268:14268
+#      - 9411:9411
+
+volumes:
+  psql:
+  minio:

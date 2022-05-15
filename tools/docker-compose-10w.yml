@@ -35,7 +35,7 @@ services:
 
   # The flask application server
   backend:
-    image: data61/anonlink-app:v1.15.1
+    image: data61/anonlink-app:${TAG:-latest}
     env_file:
       - .env
     environment:
@@ -50,7 +50,7 @@ services:
 
   # The application server can also setup the database
   db_init:
-    image: data61/anonlink-app:v1.15.1
+    image: data61/anonlink-app:${TAG:-latest}
     environment:
       - DEBUG=true
       - DATABASE_PASSWORD=rX%QpV7Xgyrz
@@ -59,11 +59,9 @@ services:
     depends_on:
       - db
 
-  # Set up the object store to have another more restricted user
+  # Setup the object store to have another more restricted user
   objectstore_init:
     image: minio/mc:RELEASE.2021-02-14T04-28-06Z
-    environment:
-      - OBJECT_STORE_SECURE=false
     env_file:
       - .env
     entrypoint: |
@@ -74,8 +72,8 @@ services:
       - minio
 
   # A celery worker
-  worker_01:
-    image: data61/anonlink-app:v1.15.1
+  worker_1:
+    image: data61/anonlink-app:${TAG:-latest}
     depends_on:
       - redis
       - db
@@ -91,8 +89,8 @@ services:
       - CELERY_DB_MAX_CONNECTIONS=3
 
   # A celery worker
-  worker_02:
-    image: data61/anonlink-app:v1.15.1
+  worker_2:
+    image: data61/anonlink-app:${TAG:-latest}
     depends_on:
       - redis
       - db
@@ -108,8 +106,8 @@ services:
       - CELERY_DB_MAX_CONNECTIONS=3
 
   # A celery worker
-  worker_03:
-    image: data61/anonlink-app:v1.15.1
+  worker_3:
+    image: data61/anonlink-app:${TAG:-latest}
     depends_on:
       - redis
       - db
@@ -125,8 +123,8 @@ services:
       - CELERY_DB_MAX_CONNECTIONS=3
 
   # A celery worker
-  worker_04:
-    image: data61/anonlink-app:v1.15.1
+  worker_4:
+    image: data61/anonlink-app:${TAG:-latest}
     depends_on:
       - redis
       - db
@@ -142,8 +140,8 @@ services:
       - CELERY_DB_MAX_CONNECTIONS=3
 
   # A celery worker
-  worker_05:
-    image: data61/anonlink-app:v1.15.1
+  worker_5:
+    image: data61/anonlink-app:${TAG:-latest}
     depends_on:
       - redis
       - db
@@ -158,9 +156,9 @@ services:
       - CELERY_DB_MIN_CONNECTIONS=1
       - CELERY_DB_MAX_CONNECTIONS=3
 
-  # A celery worker
-  worker_06:
-    image: data61/anonlink-app:v1.15.1
+# A celery worker
+  worker_6:
+    image: data61/anonlink-app:${TAG:-latest}
     depends_on:
       - redis
       - db
@@ -175,9 +173,9 @@ services:
       - CELERY_DB_MIN_CONNECTIONS=1
       - CELERY_DB_MAX_CONNECTIONS=3
 
-  # A celery worker
-  worker_07:
-    image: data61/anonlink-app:v1.15.1
+# A celery worker
+  worker_7:
+    image: data61/anonlink-app:${TAG:-latest}
     depends_on:
       - redis
       - db
@@ -192,9 +190,9 @@ services:
       - CELERY_DB_MIN_CONNECTIONS=1
       - CELERY_DB_MAX_CONNECTIONS=3
 
-  # A celery worker
-  worker_08:
-    image: data61/anonlink-app:v1.15.1
+# A celery worker
+  worker_8:
+    image: data61/anonlink-app:${TAG:-latest}
     depends_on:
       - redis
       - db
@@ -209,9 +207,9 @@ services:
       - CELERY_DB_MIN_CONNECTIONS=1
       - CELERY_DB_MAX_CONNECTIONS=3
 
-  # A celery worker
-  worker_09:
-    image: data61/anonlink-app:v1.15.1
+# A celery worker
+  worker_9:
+    image: data61/anonlink-app:${TAG:-latest}
     depends_on:
       - redis
       - db
@@ -226,9 +224,9 @@ services:
       - CELERY_DB_MIN_CONNECTIONS=1
       - CELERY_DB_MAX_CONNECTIONS=3
 
-  # A celery worker
+# A celery worker
   worker_10:
-    image: data61/anonlink-app:v1.15.1
+    image: data61/anonlink-app:${TAG:-latest}
     depends_on:
       - redis
       - db
@@ -257,7 +255,7 @@ services:
 
   # A celery monitor. Useful for debugging.
 #  celery_monitor:
-#    image: data61/anonlink-app:v1.15.1
+#    image: data61/anonlink-app:${TAG:-latest}
 #    depends_on:
 #      - redis
 #      - worker
